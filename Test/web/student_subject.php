@@ -1,25 +1,24 @@
 <?php 
-global $conn;
+	global $conn;
 function connect_db()
 {
-global $conn;
-$servername = "localhost";
-$username   = "root";
-$password = "";
-$dbname = "test_younet";
-if(!$conn){
-	$conn = new mysqli($servername, $username, $password, $dbname) or die("Không kết nối :" . $conn->connect_error);
+	global $conn;
+	$servername = "localhost";
+	$username   = "root";
+	$password = "";
+	$dbname = "test_younet";
+	if(!$conn){
+	$conn = new mysqli($servername, $username, $password, $dbname) or die ("Không kết nối :" . $conn->connect_error);
 	$conn->set_charset('utf8');
-
 }
-
 }
-function disconnect_db(){
-global $conn;
-if($conn)
+function disconnect_db()
 {
-	$conn->close();
-}
+	global $conn;
+	if($conn)
+		{
+			$conn->close();
+		}
 }
 function get_all_students()
 {
@@ -48,18 +47,18 @@ function login($user,$pass)
 	return $result;
 }
 function get_all_subjects(){
-		global $conn;
-		connect_db();
-		$sql="SELECT * FROM subject ORDER BY subject_id ASC";
-		$data =$conn->query($sql);
-		$result = array();
-		while($row=$data->fetch_assoc())
-		{
-			$result[]=$row;
-		}
-		return $result ;
-		
-		disconnect_db();
+	global $conn;
+	connect_db();
+	$sql="SELECT * FROM subject ORDER BY subject_id ASC";
+	$data =$conn->query($sql);
+	$result = array();
+	while($row=$data->fetch_assoc())
+	{
+		$result[]=$row;
+	}
+	return $result ;
+	
+	disconnect_db();
 }
 function get_student($st_id)
 {
@@ -70,11 +69,8 @@ function get_student($st_id)
 	if($query->num_rows >0)
 	{
 		$result=$query->fetch_assoc();
-		
-
 	}
 	return $result;
-	
 	disconnect_db();
 
 }
@@ -89,7 +85,6 @@ function get_subject($su_id)
 	$result=$query->fetch_assoc();
 	}
 	return $result;
-	
 	disconnect_db();
 
 }
@@ -169,8 +164,7 @@ function get_su_st($su_id)
 
 	if($query->num_rows > 0) {
 		$result[]=$query->fetch_assoc();
-	}
-    
+	}    
 	return $result;
 	disconnect_db();
 }
