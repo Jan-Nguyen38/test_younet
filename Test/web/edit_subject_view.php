@@ -46,15 +46,15 @@ if(isset($_POST['su_id']) && isset($_POST['su_name']) && isset($_POST['departmen
 				<input  name="su_id" type="text" class="form-control" id="formGroupExampleInput"   readonly value="<?php echo $value['subject_id']?>"  required>
 			</fieldset>
 			<fieldset class="form-group">
-				<label for="formGroupExampleInput2">Tên môn học</label>
-				<input name="su_name" type="text" class="form-control" id="formGroupExampleInput2" value="<?php echo $value['subject_name']?>"  required>		
+				<label for="formGroupExampleInput1">Tên môn học</label>
+				<input name="su_name" type="text" class="form-control" id="formGroupExampleInput1" value="<?php echo $value['subject_name']?>"  required>		
 			</fieldset>
 			<fieldset class="form-group">
 				<label for="formGroupExampleInput2">Khoa/Ngành</label>
-				<input name="department_view" type="text" class="form-control" id="formGroupExampleInput3" value="<?php echo $value['department']?>"   required>		
+				<input name="department_view" type="text" class="form-control" id="formGroupExampleInput2" value="<?php echo $value['department']?>"   required>		
 			</fieldset><fieldset class="form-group">
-				<label for="formGroupExampleInput2">Số tín chỉ</label>
-				<input name="credit_view" type="text" class="form-control" id="formGroupExampleInput4" value="<?php echo $value['credit']?>"  required>		
+				<label for="formGroupExampleInput3">Số tín chỉ</label>
+				<input name="credit_view" type="text" class="form-control" id="formGroupExampleInput3" value="<?php echo $value['credit']?>"  required>		
 			</fieldset>
 				<input type="submit" class="btn btn-success btn-block"  value="Cập nhật" >
 		</div>
