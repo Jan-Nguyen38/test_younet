@@ -1,3 +1,23 @@
+<?php 
+require 'student_subject.php';
+$data =get_all_su_id();
+//var_dump($data)
+
+if( isset($_POST['st_id']) &&  isset($_POST['st_name']) && isset($_POST['bday']) && isset($_POST['major']) && isset($_POST['subject_id']) )
+{
+	$id = $_POST['st_id'] ;
+	$name = $_POST['st_name'] ;
+	$bday = $_POST['bday'] ;
+	$major =  $_POST['major'] ;
+	$sub_id = $_POST['subject_id'] ;
+	$result = add_student($id,$name,$bday,$major,$sub_id);
+
+	if($result)
+{
+	header("Location: home.php");
+}
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +48,19 @@
 			<fieldset class="form-group">
 				<label for="formGroupExampleInput2">Ngày sinh</label>
 				<input name="bday" type="text" class="form-control" id="formGroupExampleInput2" required>		
-			</fieldset><fieldset class="form-group">
+			</fieldset>
+			<fieldset class="form-group">
 				<label for="formGroupExampleInput3">Ngành</label>
 				<input name="major" type="text" class="form-control" id="formGroupExampleInput3" required>		
-			</fieldset><fieldset class="form-group">
+			</fieldset>
+			<fieldset class="form-group">
 				<label for="formGroupExampleInput4">Môn đăng kí </label>
 				<select name="subject_id" required>
-				  <option value="">----------Chọn----------</option>
-				  <option value="MA003"> Đại số tuyến tính</option>
-				  <option value="IT004"> Cơ sở dữ liệu</option>
-				  <option value="NT101"> An toàn Mạng máy tính</option>
-				  <option value="EN001"> Anh Văn 1</option>
-</select>		
+					<option value="">----------Chọn----------</option>
+					<?php foreach ($data as $key => $value) : ?>
+					<option value="<?php echo $value['subject_id'] ?>"> <?php echo $value['subject_name'] ?></option>
+					<?php endforeach ?>
+				</select>		
 			</fieldset>
 				<input type="submit" class="btn btn-success btn-block"  value="Lưu" >
 		</div>
@@ -49,24 +70,3 @@
 	
 </body>
 </html>
-<?php 
-require 'student_subject.php';
-
-if( isset($_POST['st_id']) &&  isset($_POST['st_name']) && isset($_POST['bday']) && isset($_POST['major']) && isset($_POST['subject_id']) )
-{
-	$id = $_POST['st_id'] ;
-	$name = $_POST['st_name'] ;
-	$bday = $_POST['bday'] ;
-	$major =  $_POST['major'] ;
-	$sub_id = $_POST['subject_id'] ;
-	$result = add_student($id,$name,$bday,$major,$sub_id);
-
-	if($result)
-{
-	header("Location: home.php");
-}
-}
-
-
-
- ?>
