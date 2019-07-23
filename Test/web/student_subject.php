@@ -145,26 +145,44 @@ function update_subject($su_id,$su_name,$department,$credit){
 
 }
 
-function get_su_st($su_id)
+function get_su_st($id_su)
 {
 	global $conn;
 	connect_db();
-	$su_id = addslashes($su_id);
+	$su_id = addslashes($id_su);
 	// $sql="SELECT student_id, student_name, birthday, major 
 	//       FROM student 
 	//       INNER JOIN subject ON student.subject_id=subject.subject_id ";
 
 	//echo $su_id;
-	$sql = "SELECT student.*, subject.*
-	      FROM student 
-	      INNER JOIN subject ON student.subject_id = subject.subject_id
-	      WHERE student.subject_id LIKE '%$su_id%'";
+	$sql = "SELECT *
+	        FROM student 
+	        INNER JOIN subject ON student.subject_id = subject.subject_id
+	        WHERE student.subject_id LIKE '%$su_id%'";
 	$query = $conn->query($sql);
 	$result = array();
+	while($row=$query->fetch_assoc())
+	{
+		$result[]=$row;
 
-	if($query->num_rows > 0) {
-		$result[]=$query->fetch_assoc();
-	}    
+	}
+	//var_dump($result);
+	return $result;
+	//var_dump($result);
+	disconnect_db();
+}
+function get_all_su_id()
+{
+	global $conn;
+	connect_db();
+	$query = $conn->query("SELECT subject_id,subject_name FROM subject ");
+	$result = array();
+	while ($row=$query->fetch_assoc())
+	{
+		$result[]=$row;
+	}
+	//var_dump($result);
+
 	return $result;
 	disconnect_db();
 }
